@@ -7,29 +7,33 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import com.springcloud.msvc.items.clients.ProductFeignClient;
+import com.springcloud.msvc.items.dto.LoteResponse;
 import com.springcloud.msvc.items.dto.ProductResponse;
-import com.springcloud.msvc.items.models.Lote;
+import com.springcloud.msvc.items.mapper.LoteMapper;
 
 @Service
 public class LoteServiceFeign implements LoteService {
 
     private ProductFeignClient productFeignClient;
+    private LoteMapper loteMapper;
 
-    public LoteServiceFeign(ProductFeignClient productFeignClient){
+    public LoteServiceFeign(ProductFeignClient productFeignClient, LoteMapper loteMapper){
         this.productFeignClient = productFeignClient;
-    }
-    @Override
-    public List<Lote> findAll() {
-        return productFeignClient.findAll().stream().map(product -> {
-            return new Lote(product , UUID.randomUUID().toString(), "wewe");
-        }).toList();
+        this.loteMapper = loteMapper;
     }
 
     @Override
-    public Optional<Lote> findById(Long id) {
+    public List<LoteResponse> findAll() {
+        return productFeignClient.findAll().stream().map(product -> loteMapper.toLoteResponse(product, UUID.randomUUID().toString(), "Cliente demo")).toList();
+    }
+
+    @Override
+    public Optional<LoteResponse> findById(Long id) {
         ProductResponse product = productFeignClient.obtenerProducto(id);
-        Lote lote = new Lote(product, UUID.randomUUID().toString(), "Pepito");
+        LoteResponse lote = loteMapper.toLoteResponse(product, UUID.randomUUID().toString(), "Pepito");
         return Optional.of(lote);
     }
+
+
     
 }

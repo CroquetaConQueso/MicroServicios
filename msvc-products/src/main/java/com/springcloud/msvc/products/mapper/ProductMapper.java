@@ -13,9 +13,9 @@ public class ProductMapper {
         .quantity(pDto.quantity()).build();
     }
 
-    public ProductResponse toResponse(Product product){
+    public ProductResponse toResponse(Product product, String port){
         return new ProductResponse(product.getProductId(),product.getProductName(),
                     product.getProductPrice(),product.getCreatedAt(),product.getQuantity()
-                    ,product.getDescription(),product.getProductCode());
+                    ,product.getDescription(),product.getProductCode(), port);
     }
 }

@@ -7,5 +7,5 @@ import java.time.LocalDateTime;
 public record ProductResponse(
     Long id, String productName, BigDecimal productPrice,
     LocalDateTime createdAt, int quantity, String description,
-    String productCode
+    String productCode, String port
 ) {}

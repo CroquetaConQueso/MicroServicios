@@ -1,5 +1,5 @@
 package com.springcloud.msvc.items.models;
-
+/* 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -42,3 +42,4 @@ public class Product {
     @Column(name="codigo_producto", unique = true, nullable = false)
     private String productCode;
 }
+*/

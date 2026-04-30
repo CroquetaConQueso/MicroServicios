@@ -3,9 +3,9 @@ package com.springcloud.msvc.items.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.springcloud.msvc.items.models.Lote;
+import com.springcloud.msvc.items.dto.LoteResponse;
 
 public interface LoteService {
-    List<Lote> findAll();
-    Optional<Lote> findById(Long id);
+    List<LoteResponse> findAll();
+    Optional<LoteResponse> findById(Long id);
 }
